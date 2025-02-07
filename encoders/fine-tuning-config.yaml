@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------------------------------
+#
+# All the configurations associated with the LLM-OPS project.
+#
+# Note:
+#   1. Keep this file at a location that is accessible from the entire compute cluster,
+#      preferably on an NFS mount, object store, or something similar.
+#   2. Pass this file path as an arg to your compute jobs, etc., as needed.
+#   3. For simplicity of the solution, currently, we have defaulted to $PROJECT_HOME
+#      if no explicit file path is specified. For details, look at the ConfigurationMixin
+# -----------------------------------------------------------------------------------------------
+
+
+#
+# Sentence transformer models
+#
+models:
+  multilingual-sentence-encoder: distiluse-base-multilingual-cased-v2
+  multilingual-cross-encoder: cross-encoder/stsb-distilroberta-base
+  english-sentence-encoder: BAAI/bge-base-en-v1.5
+  spacy-model: en_core_web_sm
+  spacy-sentence-embedding-model: BAAI/bge-large-en-v1.5
+  device: cuda
+  sentence-embedding:
+    normalize-embeddings: True
+#
+# Text chunking params
+#
+text:
+  chunk-size: 2000
+  chunk-similarity-threshold: -1.0
+
+#
+# File paths
+#
+paths:
+  experiments_dir: /home/chandar/experiments
+  ray_results: /home/chandar/ray_results
+  books_dir: /home/chandar/books
+  results: /home/chandar/results
+  data: /home/chandar/data
+
+final-ft-model-paths:
+  sentiment_model_dir: /home/devops/ravi/final_models/sentiment_model
+  sentiment_model_peft_dir: /home/devops/ravi/final_models/sentiment_model_peft
+  sentiment_model_lora_dir: /home/devops/ravi/final_models/sentiment_model_lora
+  duplicate_detector_model_dir: /home/devops/ravi/final_models/duplicate_detector_model
+  eval_output_dir: "/home/devops/ravi/test_results"
+
+vision-transformer:
+  vit-results: vit-trees-full-ft # vit-trees-tl / vit-trees-full-ft
+  vit-finetuning-type: 1 # 0 / 1
